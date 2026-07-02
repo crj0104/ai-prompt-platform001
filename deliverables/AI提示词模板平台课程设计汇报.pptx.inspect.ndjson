@@ -1,0 +1,220 @@
+{"kind":"deck","id":"pr/9tnq6f","name":"Deck"}
+{"kind":"layout","layoutId":"87ea4dce-7ef1-4adc-84a1-d3c738a3a55f","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"84bb47b2-4c3f-46a0-a774-3405c0f6d07f","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/ubzlnp","slide":1,"title":"数据库原理课程设计","textShapes":5}
+{"kind":"textbox","id":"sh/7adsji5s","slide":1,"text":"数据库原理课程设计","textPreview":"数据库原理课程设计","textChars":9,"textLines":1,"bbox":[54,44,360,32]}
+{"kind":"shape","id":"sh/wval87ed","slide":1,"bbox":[54,92,1170,2]}
+{"kind":"textbox","id":"sh/pg3ex0nu","slide":1,"text":"AI提示词模板平台","textPreview":"AI提示词模板平台","textChars":9,"textLines":1,"bbox":[54,166,840,178]}
+{"kind":"textbox","id":"sh/e1w7mp0b","slide":1,"text":"围绕模板版本、交易使用、评价统计构建的数据库应用系统","textPreview":"围绕模板版本、交易使用、评价统计构建的数据库应用系统","textChars":26,"textLines":1,"bbox":[54,366,760,84]}
+{"kind":"shape","id":"sh/7mp0bi9s","slide":1,"bbox":[884,160,308,308]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":1,"text":"AI\nPrompt\nPlatform","textPreview":"AI | Prompt | Platform","textChars":18,"textLines":3,"bbox":[914,198,250,210]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":1,"text":"Spring Boot / MyBatis-Plus / H2 / MySQL / Frontend","textPreview":"Spring Boot / MyBatis-Plus / H2 / MySQL / Frontend","textChars":50,"textLines":1,"bbox":[54,618,840,42]}
+{"kind":"notes","id":"nt/ubzlnp","slide":1,"text":""}
+{"kind":"slide","id":"sl/z2leh6","slide":2,"title":"课题要解决的是提示词模板的完整业务闭环","textShapes":11}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":2,"text":"课题要解决的是提示词模板的完整业务闭环","textPreview":"课题要解决的是提示词模板的完整业务闭环","textChars":19,"textLines":1,"bbox":[54,42,900,60]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":2,"text":"系统不是单纯模板列表，而是覆盖检索、交易、使用、评价和统计。","textPreview":"系统不是单纯模板列表，而是覆盖检索、交易、使用、评价和统计。","textChars":30,"textLines":1,"bbox":[54,104,920,34]}
+{"kind":"shape","id":"sh/ra5gbq1o","slide":2,"bbox":[54,150,1170,2]}
+{"kind":"shape","id":"sh/kjm1cfa9","slide":2,"bbox":[54,188,350,152]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":2,"text":"设计目标","textPreview":"设计目标","textChars":4,"textLines":1,"bbox":[72,206,314,36]}
+{"kind":"textbox","id":"sh/2hwfyxob","slide":2,"text":"实现一个可运行、可演示、结构清晰的前后端分离数据库应用系统。","textPreview":"实现一个可运行、可演示、结构清晰的前后端分离数据库应用系统。","textChars":30,"textLines":1,"bbox":[72,254,314,70]}
+{"kind":"shape","id":"sh/r2p8nqxs","slide":2,"bbox":[456,188,350,152]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":2,"text":"设计要求","textPreview":"设计要求","textChars":4,"textLines":1,"bbox":[474,206,314,36]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":2,"text":"完成需求分析、E-R模型、逻辑和物理设计、功能实现、并发与查询优化实验。","textPreview":"完成需求分析、E-R模型、逻辑和物理设计、功能实现、并发与查询优化实验。","textChars":36,"textLines":1,"bbox":[474,254,314,70]}
+{"kind":"shape","id":"sh/xczed8v6","slide":2,"bbox":[858,188,350,152]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":2,"text":"小组分工","textPreview":"小组分工","textChars":4,"textLines":1,"bbox":[876,206,314,36]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":2,"text":"成员A负责数据库与后端；成员B负责前端、测试、文档和演示材料。","textPreview":"成员A负责数据库与后端；成员B负责前端、测试、文档和演示材料。","textChars":31,"textLines":1,"bbox":[876,254,314,70]}
+{"kind":"shape","id":"sh/qpg3ex0n","slide":2,"bbox":[54,429,10,10]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":2,"text":"数据库表结构覆盖核心业务数据","textPreview":"数据库表结构覆盖核心业务数据","textChars":14,"textLines":1,"bbox":[80,420,954,48]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":2,"bbox":[54,481,10,10]}
+{"kind":"textbox","id":"sh/fyxobm58","slide":2,"text":"后端统一编排服务组织领域流程","textPreview":"后端统一编排服务组织领域流程","textChars":14,"textLines":1,"bbox":[80,472,954,48]}
+{"kind":"shape","id":"sh/qd4vmtwr","slide":2,"bbox":[54,533,10,10]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":2,"text":"前端独立调用 REST API 完成演示","textPreview":"前端独立调用 REST API 完成演示","textChars":20,"textLines":1,"bbox":[80,524,954,48]}
+{"kind":"notes","id":"nt/z2leh6","slide":2,"text":""}
+{"kind":"slide","id":"sl/4yb8nb","slide":3,"title":"三类用户共同驱动系统功能划分","textShapes":15}
+{"kind":"textbox","id":"sh/pkzupwb2","slide":3,"text":"三类用户共同驱动系统功能划分","textPreview":"三类用户共同驱动系统功能划分","textChars":14,"textLines":1,"bbox":[54,42,900,60]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":3,"text":"普通用户、创作者、管理员分别对应消费、生产和平台治理视角。","textPreview":"普通用户、创作者、管理员分别对应消费、生产和平台治理视角。","textChars":29,"textLines":1,"bbox":[54,104,920,34]}
+{"kind":"shape","id":"sh/7ed8bat4","slide":3,"bbox":[54,150,1170,2]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":3,"bbox":[54,190,1180,78]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":3,"text":"角色","textPreview":"角色","textChars":2,"textLines":1,"bbox":[64,204,160,26]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":3,"text":"核心用例","textPreview":"核心用例","textChars":4,"textLines":1,"bbox":[244,204,460,26]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":3,"text":"系统响应","textPreview":"系统响应","textChars":4,"textLines":1,"bbox":[724,204,500,26]}
+{"kind":"shape","id":"sh/wjudg7ad","slide":3,"bbox":[54,268,1180,78]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":3,"text":"普通用户","textPreview":"普通用户","textChars":4,"textLines":1,"bbox":[64,280,160,60]}
+{"kind":"textbox","id":"sh/lwval87e","slide":3,"text":"搜索、收藏、购买、使用、评价","textPreview":"搜索、收藏、购买、使用、评价","textChars":14,"textLines":1,"bbox":[244,280,460,60]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":3,"text":"生成订单、校验权限、记录使用日志","textPreview":"生成订单、校验权限、记录使用日志","textChars":16,"textLines":1,"bbox":[724,280,500,60]}
+{"kind":"shape","id":"sh/3q5o7qpg","slide":3,"bbox":[54,346,1180,78]}
+{"kind":"textbox","id":"sh/e9cvixcz","slide":3,"text":"创作者","textPreview":"创作者","textChars":3,"textLines":1,"bbox":[64,358,160,60]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":3,"text":"查看模板、版本、趋势、收益","textPreview":"查看模板、版本、趋势、收益","textChars":13,"textLines":1,"bbox":[244,358,460,60]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":3,"text":"聚合模板使用量和收入数据","textPreview":"聚合模板使用量和收入数据","textChars":12,"textLines":1,"bbox":[724,358,500,60]}
+{"kind":"shape","id":"sh/3itgfmlk","slide":3,"bbox":[54,424,1180,78]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":3,"text":"管理员","textPreview":"管理员","textChars":3,"textLines":1,"bbox":[64,436,160,60]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":3,"text":"查看平台总览、排行、活动","textPreview":"查看平台总览、排行、活动","textChars":12,"textLines":1,"bbox":[244,436,460,60]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":3,"text":"统计用户、模板、交易和活动状态","textPreview":"统计用户、模板、交易和活动状态","textChars":15,"textLines":1,"bbox":[724,436,500,60]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":3,"text":"用例关系：用户围绕模板产生收藏、订单、使用日志和评价；创作者围绕模板产生版本和统计；管理员围绕平台数据进行监控。","textPreview":"用例关系：用户围绕模板产生收藏、订单、使用日志和评价；创作者围绕模板产生版本和统计；管理员围绕平台数据进行监控。","textChars":56,"textLines":1,"bbox":[54,520,1040,72]}
+{"kind":"notes","id":"nt/4yb8nb","slide":3,"text":""}
+{"kind":"slide","id":"sl/jgxdzh","slide":4,"title":"后端保留统一入口，领域服务负责具体业务","textShapes":14}
+{"kind":"textbox","id":"sh/9cvixcze","slide":4,"text":"后端保留统一入口，领域服务负责具体业务","textPreview":"后端保留统一入口，领域服务负责具体业务","textChars":19,"textLines":1,"bbox":[54,42,900,60]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":4,"text":"Controller 只依赖 PortalService，应用服务再编排模板、交易、用户和统计服务。","textPreview":"Controller 只依赖 PortalService，应用服务再编排模板、交易、用户和统计服务。","textChars":50,"textLines":1,"bbox":[54,104,920,34]}
+{"kind":"shape","id":"sh/r65wjudg","slide":4,"bbox":[54,150,1170,2]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":4,"bbox":[122,180,1036,48]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":4,"text":"前端层","textPreview":"前端层","textChars":3,"textLines":1,"bbox":[148,190,160,28]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":4,"text":"frontend/index.html / app.js","textPreview":"frontend/index.html / app.js","textChars":28,"textLines":1,"bbox":[336,190,780,28]}
+{"kind":"shape","id":"sh/nih4byhg","slide":4,"bbox":[122,250,1036,48]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":4,"text":"接口层","textPreview":"接口层","textChars":3,"textLines":1,"bbox":[148,260,160,28]}
+{"kind":"textbox","id":"sh/9s36hcrm","slide":4,"text":"ApiController","textPreview":"ApiController","textChars":13,"textLines":1,"bbox":[336,260,780,28]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":4,"bbox":[122,320,1036,48]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":4,"text":"编排层","textPreview":"编排层","textChars":3,"textLines":1,"bbox":[148,330,160,28]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":4,"text":"PortalApplicationService","textPreview":"PortalApplicationService","textChars":24,"textLines":1,"bbox":[336,330,780,28]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":4,"bbox":[122,390,1036,48]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":4,"text":"领域层","textPreview":"领域层","textChars":3,"textLines":1,"bbox":[148,400,160,28]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":4,"text":"Template / Trade / User / Dashboard / Analytics Service","textPreview":"Template / Trade / User / Dashboard / Analytics Service","textChars":55,"textLines":1,"bbox":[336,400,780,28]}
+{"kind":"shape","id":"sh/vahoza1g","slide":4,"bbox":[122,460,1036,48]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":4,"text":"持久层","textPreview":"持久层","textChars":3,"textLines":1,"bbox":[148,470,160,28]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":4,"text":"Mapper + XML SQL + MyBatis-Plus","textPreview":"Mapper + XML SQL + MyBatis-Plus","textChars":31,"textLines":1,"bbox":[336,470,780,28]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":4,"bbox":[122,530,1036,48]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":4,"text":"数据库层","textPreview":"数据库层","textChars":4,"textLines":1,"bbox":[148,540,160,28]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":4,"text":"H2 演示库 / MySQL 8.0","textPreview":"H2 演示库 / MySQL 8.0","textChars":18,"textLines":1,"bbox":[336,540,780,28]}
+{"kind":"notes","id":"nt/jgxdzh","slide":4,"text":""}
+{"kind":"slide","id":"sl/x8e6d7","slide":5,"title":"数据库概念模型围绕模板实体展开","textShapes":13}
+{"kind":"textbox","id":"sh/8z25kb6x","slide":5,"text":"数据库概念模型围绕模板实体展开","textPreview":"数据库概念模型围绕模板实体展开","textChars":15,"textLines":1,"bbox":[54,42,900,60]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":5,"text":"模板是中心实体，版本、标签、订单、使用和评价围绕它形成业务闭环。","textPreview":"模板是中心实体，版本、标签、订单、使用和评价围绕它形成业务闭环。","textChars":32,"textLines":1,"bbox":[54,104,920,34]}
+{"kind":"shape","id":"sh/qtcj6tov","slide":5,"bbox":[54,150,1170,2]}
+{"kind":"shape","id":"sh/xs72x4na","slide":5,"bbox":[486,300,300,84]}
+{"kind":"textbox","id":"sh/87ed8bat","slide":5,"text":"PromptTemplate\n模板","textPreview":"PromptTemplate | 模板","textChars":17,"textLines":2,"bbox":[512,312,248,58]}
+{"kind":"shape","id":"sh/fmlkjm1c","slide":5,"bbox":[88,192,250,72]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":5,"text":"SysUser\n用户","textPreview":"SysUser | 用户","textChars":10,"textLines":2,"bbox":[106,207,214,42]}
+{"kind":"shape","id":"sh/x4nap4r6","slide":5,"bbox":[486,174,250,72]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":5,"text":"Version\n模板版本","textPreview":"Version | 模板版本","textChars":12,"textLines":2,"bbox":[504,189,214,42]}
+{"kind":"shape","id":"sh/mp0bi9s3","slide":5,"bbox":[890,192,250,72]}
+{"kind":"textbox","id":"sh/bat47y1k","slide":5,"text":"Tag\n标签","textPreview":"Tag | 标签","textChars":6,"textLines":2,"bbox":[908,207,214,42]}
+{"kind":"shape","id":"sh/4vmtwra5","slide":5,"bbox":[92,456,250,72]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":5,"text":"Order\n订单","textPreview":"Order | 订单","textChars":8,"textLines":2,"bbox":[110,471,214,42]}
+{"kind":"shape","id":"sh/m1cfa9w3","slide":5,"bbox":[486,500,250,72]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":5,"text":"UseLog\n使用日志","textPreview":"UseLog | 使用日志","textChars":11,"textLines":2,"bbox":[504,515,214,42]}
+{"kind":"shape","id":"sh/47y1kre1","slide":5,"bbox":[890,456,250,72]}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":5,"text":"Review\n评价","textPreview":"Review | 评价","textChars":9,"textLines":2,"bbox":[908,471,214,42]}
+{"kind":"textbox","id":"sh/m58z25kb","slide":5,"text":"创作 / 购买","textPreview":"创作 / 购买","textChars":7,"textLines":1,"bbox":[256,278,180,30]}
+{"kind":"textbox","id":"sh/bq1oryts","slide":5,"text":"1:N","textPreview":"1:N","textChars":3,"textLines":1,"bbox":[572,252,90,28]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":5,"text":"N:M","textPreview":"N:M","textChars":3,"textLines":1,"bbox":[812,278,90,28]}
+{"kind":"textbox","id":"sh/e1w7mp0b","slide":5,"text":"订单 -> 使用 -> 评价","textPreview":"订单 -> 使用 -> 评价","textChars":14,"textLines":1,"bbox":[382,424,520,36]}
+{"kind":"notes","id":"nt/x8e6d7","slide":5,"text":""}
+{"kind":"slide","id":"sl/pw3hei","slide":6,"title":"逻辑与物理设计同时服务业务完整性和查询效率","textShapes":21}
+{"kind":"textbox","id":"sh/y90je9cv","slide":6,"text":"逻辑与物理设计同时服务业务完整性和查询效率","textPreview":"逻辑与物理设计同时服务业务完整性和查询效率","textChars":21,"textLines":1,"bbox":[54,42,900,60]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":6,"text":"表结构覆盖业务关系，索引面向搜索、排行、趋势和用户中心查询。","textPreview":"表结构覆盖业务关系，索引面向搜索、排行、趋势和用户中心查询。","textChars":30,"textLines":1,"bbox":[54,104,920,34]}
+{"kind":"shape","id":"sh/gbq1oryt","slide":6,"bbox":[54,150,1170,2]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":6,"bbox":[54,178,1180,62]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":6,"text":"数据域","textPreview":"数据域","textChars":3,"textLines":1,"bbox":[64,192,130,26]}
+{"kind":"textbox","id":"sh/58z25kb6","slide":6,"text":"核心表","textPreview":"核心表","textChars":3,"textLines":1,"bbox":[214,192,410,26]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":6,"text":"设计重点","textPreview":"设计重点","textChars":4,"textLines":1,"bbox":[644,192,580,26]}
+{"kind":"shape","id":"sh/neloj2t8","slide":6,"bbox":[54,240,1180,62]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":6,"text":"用户域","textPreview":"用户域","textChars":3,"textLines":1,"bbox":[64,252,130,44]}
+{"kind":"textbox","id":"sh/83itgfml","slide":6,"text":"sys_user, user_balance_log","textPreview":"sys_user, user_balance_log","textChars":26,"textLines":1,"bbox":[214,252,410,44]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":6,"text":"账号、余额、流水审计","textPreview":"账号、余额、流水审计","textChars":10,"textLines":1,"bbox":[644,252,580,44]}
+{"kind":"shape","id":"sh/qxs72x4n","slide":6,"bbox":[54,302,1180,62]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":6,"text":"模板域","textPreview":"模板域","textChars":3,"textLines":1,"bbox":[64,314,130,44]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":6,"text":"prompt_template, prompt_template_version","textPreview":"prompt_template, prompt_template_version","textChars":40,"textLines":1,"bbox":[214,314,410,44]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":6,"text":"当前版本指针与历史版本","textPreview":"当前版本指针与历史版本","textChars":11,"textLines":1,"bbox":[644,314,580,44]}
+{"kind":"shape","id":"sh/m94fu18j","slide":6,"bbox":[54,364,1180,62]}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":6,"text":"分类域","textPreview":"分类域","textChars":3,"textLines":1,"bbox":[64,376,130,44]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":6,"text":"tag, template_tag_rel","textPreview":"tag, template_tag_rel","textChars":21,"textLines":1,"bbox":[214,376,410,44]}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":6,"text":"多级标签和多对多关系","textPreview":"多级标签和多对多关系","textChars":10,"textLines":1,"bbox":[644,376,580,44]}
+{"kind":"shape","id":"sh/x4nap4r6","slide":6,"bbox":[54,426,1180,62]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":6,"text":"交易域","textPreview":"交易域","textChars":3,"textLines":1,"bbox":[64,438,130,44]}
+{"kind":"textbox","id":"sh/fyxobm58","slide":6,"text":"template_order, template_use_log, template_review","textPreview":"template_order, template_use_log, template_review","textChars":49,"textLines":1,"bbox":[214,438,410,44]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":6,"text":"购买、使用、反馈闭环","textPreview":"购买、使用、反馈闭环","textChars":10,"textLines":1,"bbox":[644,438,580,44]}
+{"kind":"shape","id":"sh/xczed8v6","slide":6,"bbox":[54,488,1180,62]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":6,"text":"活动域","textPreview":"活动域","textChars":3,"textLines":1,"bbox":[64,500,130,44]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":6,"text":"free_campaign, campaign_template, campaign_claim","textPreview":"free_campaign, campaign_template, campaign_claim","textChars":48,"textLines":1,"bbox":[214,500,410,44]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":6,"text":"限免库存和防重复领取","textPreview":"限免库存和防重复领取","textChars":10,"textLines":1,"bbox":[644,500,580,44]}
+{"kind":"textbox","id":"sh/1gvy90je","slide":6,"text":"关键索引：idx_template_filter、idx_template_hot_sort、idx_use_query、idx_order_query。","textPreview":"关键索引：idx_template_filter、idx_template_hot_sort、idx_use_query、idx_order_query。","textChars":77,"textLines":1,"bbox":[54,586,1050,34]}
+{"kind":"notes","id":"nt/pw3hei","slide":6,"text":""}
+{"kind":"slide","id":"sl/qr5724","slide":7,"title":"购买和使用流程体现事务边界与权限校验","textShapes":22}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":7,"text":"购买和使用流程体现事务边界与权限校验","textPreview":"购买和使用流程体现事务边界与权限校验","textChars":18,"textLines":1,"bbox":[54,42,900,60]}
+{"kind":"textbox","id":"sh/uxc3ylc7","slide":7,"text":"优化后的流程避免重复购买和未购买直接使用付费模板。","textPreview":"优化后的流程避免重复购买和未购买直接使用付费模板。","textChars":25,"textLines":1,"bbox":[54,104,920,34]}
+{"kind":"shape","id":"sh/ji5snelo","slide":7,"bbox":[54,150,1170,2]}
+{"kind":"shape","id":"sh/crmhk3q5","slide":7,"bbox":[54,238,150,150]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":7,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[102,252,54,50]}
+{"kind":"textbox","id":"sh/ulwval87","slide":7,"text":"校验模板状态","textPreview":"校验模板状态","textChars":6,"textLines":1,"bbox":[70,318,118,52]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":7,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[208,292,42,42]}
+{"kind":"shape","id":"sh/8nqxs72x","slide":7,"bbox":[250,238,150,150]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":7,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[298,252,54,50]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":7,"text":"判断已有订单","textPreview":"判断已有订单","textChars":6,"textLines":1,"bbox":[266,318,118,52]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":7,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[404,292,42,42]}
+{"kind":"shape","id":"sh/7mp0bi9s","slide":7,"bbox":[446,238,150,150]}
+{"kind":"textbox","id":"sh/e1w7mp0b","slide":7,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[494,252,54,50]}
+{"kind":"textbox","id":"sh/pg3ex0nu","slide":7,"text":"余额校验与扣减","textPreview":"余额校验与扣减","textChars":7,"textLines":1,"bbox":[462,318,118,52]}
+{"kind":"textbox","id":"sh/wval87ed","slide":7,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[600,292,42,42]}
+{"kind":"shape","id":"sh/7adsji5s","slide":7,"bbox":[642,238,150,150]}
+{"kind":"textbox","id":"sh/epkzupwb","slide":7,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[690,252,54,50]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":7,"text":"生成订单和流水","textPreview":"生成订单和流水","textChars":7,"textLines":1,"bbox":[658,318,118,52]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":7,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[796,292,42,42]}
+{"kind":"shape","id":"sh/s36hcrmh","slide":7,"bbox":[838,238,150,150]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":7,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[886,252,54,50]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":7,"text":"使用前校验权限","textPreview":"使用前校验权限","textChars":7,"textLines":1,"bbox":[854,318,118,52]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":7,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[992,292,42,42]}
+{"kind":"shape","id":"sh/svu9knih","slide":7,"bbox":[1034,238,150,150]}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":7,"text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[1082,252,54,50]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":7,"text":"记录版本与日志","textPreview":"记录版本与日志","textChars":7,"textLines":1,"bbox":[1050,318,118,52]}
+{"kind":"shape","id":"sh/za1gvy90","slide":7,"bbox":[54,489,10,10]}
+{"kind":"textbox","id":"sh/sji5snel","slide":7,"text":"重复购买直接返回已有成功订单","textPreview":"重复购买直接返回已有成功订单","textChars":14,"textLines":1,"bbox":[80,480,994,42]}
+{"kind":"shape","id":"sh/h4byhgn2","slide":7,"bbox":[54,535,10,10]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":7,"text":"付费模板必须先购买才能使用","textPreview":"付费模板必须先购买才能使用","textChars":13,"textLines":1,"bbox":[80,526,994,42]}
+{"kind":"shape","id":"sh/idonyd0z","slide":7,"bbox":[54,581,10,10]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":7,"text":"使用日志记录当前版本与订单编号","textPreview":"使用日志记录当前版本与订单编号","textChars":15,"textLines":1,"bbox":[80,572,994,42]}
+{"kind":"notes","id":"nt/qr5724","slide":7,"text":""}
+{"kind":"slide","id":"sl/d3ueca","slide":8,"title":"前端页面围绕演示路径设计","textShapes":9}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":8,"text":"前端页面围绕演示路径设计","textPreview":"前端页面围绕演示路径设计","textChars":12,"textLines":1,"bbox":[54,42,900,60]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":8,"text":"一个静态前端完成模板市场、详情、个人中心和看板演示。","textPreview":"一个静态前端完成模板市场、详情、个人中心和看板演示。","textChars":26,"textLines":1,"bbox":[54,104,920,34]}
+{"kind":"shape","id":"sh/h0fepkzu","slide":8,"bbox":[54,150,1170,2]}
+{"kind":"shape","id":"sh/al87ed8b","slide":8,"bbox":[54,190,350,166]}
+{"kind":"textbox","id":"sh/z61032ls","slide":8,"text":"模板市场","textPreview":"模板市场","textChars":4,"textLines":1,"bbox":[72,208,314,36]}
+{"kind":"textbox","id":"sh/orytsvu9","slide":8,"text":"搜索、标签筛选、排序、评分过滤；卡片展示价格、评分、收藏数和使用量。","textPreview":"搜索、标签筛选、排序、评分过滤；卡片展示价格、评分、收藏数和使用量。","textChars":34,"textLines":1,"bbox":[72,256,314,84]}
+{"kind":"shape","id":"sh/hcrmhk3q","slide":8,"bbox":[456,190,350,166]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":8,"text":"详情与交易","textPreview":"详情与交易","textChars":5,"textLines":1,"bbox":[474,208,314,36]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":8,"text":"详情面板展示当前版本提示词，并提供购买、收藏、使用和评价操作。","textPreview":"详情面板展示当前版本提示词，并提供购买、收藏、使用和评价操作。","textChars":31,"textLines":1,"bbox":[474,256,314,84]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":8,"bbox":[858,190,350,166]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":8,"text":"统计看板","textPreview":"统计看板","textChars":4,"textLines":1,"bbox":[876,208,314,36]}
+{"kind":"textbox","id":"sh/58z25kb6","slide":8,"text":"个人中心、创作者看板和平台总览均通过后端 API 获取数据。","textPreview":"个人中心、创作者看板和平台总览均通过后端 API 获取数据。","textChars":30,"textLines":1,"bbox":[876,256,314,84]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":8,"text":"前端默认请求 http://localhost:8080/api，也可以在页面左侧手动修改后端地址。","textPreview":"前端默认请求 http://localhost:8080/api，也可以在页面左侧手动修改后端地址。","textChars":50,"textLines":1,"bbox":[54,470,1020,56]}
+{"kind":"notes","id":"nt/d3ueca","slide":8,"text":""}
+{"kind":"slide","id":"sl/ufsf9z","slide":9,"title":"并发控制和查询优化是本系统的数据库实验重点","textShapes":18}
+{"kind":"textbox","id":"sh/t83itgfm","slide":9,"text":"并发控制和查询优化是本系统的数据库实验重点","textPreview":"并发控制和查询优化是本系统的数据库实验重点","textChars":21,"textLines":1,"bbox":[54,42,900,60]}
+{"kind":"textbox","id":"sh/mhk3q5o7","slide":9,"text":"实验关注数据一致性和高频查询性能，而不是只完成页面展示。","textPreview":"实验关注数据一致性和高频查询性能，而不是只完成页面展示。","textChars":28,"textLines":1,"bbox":[54,104,920,34]}
+{"kind":"shape","id":"sh/b2hwfyxo","slide":9,"bbox":[54,150,1170,2]}
+{"kind":"shape","id":"sh/4byhgn29","slide":9,"bbox":[54,184,1180,74]}
+{"kind":"textbox","id":"sh/twra5gbq","slide":9,"text":"实验","textPreview":"实验","textChars":2,"textLines":1,"bbox":[64,198,190,26]}
+{"kind":"textbox","id":"sh/m58z25kb","slide":9,"text":"优化处理","textPreview":"优化处理","textChars":4,"textLines":1,"bbox":[274,198,450,26]}
+{"kind":"textbox","id":"sh/bq1oryts","slide":9,"text":"结论","textPreview":"结论","textChars":2,"textLines":1,"bbox":[744,198,480,26]}
+{"kind":"shape","id":"sh/47y1kre1","slide":9,"bbox":[54,258,1180,74]}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":9,"text":"重复购买","textPreview":"重复购买","textChars":4,"textLines":1,"bbox":[64,270,190,56]}
+{"kind":"textbox","id":"sh/90je9cvi","slide":9,"text":"查询已有 SUCCESS 订单","textPreview":"查询已有 SUCCESS 订单","textChars":15,"textLines":1,"bbox":[274,270,450,56]}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":9,"text":"接口具备幂等性","textPreview":"接口具备幂等性","textChars":7,"textLines":1,"bbox":[744,270,480,56]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":9,"bbox":[54,332,1180,74]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":9,"text":"计数更新","textPreview":"计数更新","textChars":4,"textLines":1,"bbox":[64,344,190,56]}
+{"kind":"textbox","id":"sh/9s36hcrm","slide":9,"text":"SQL 原子递增/递减","textPreview":"SQL 原子递增/递减","textChars":11,"textLines":1,"bbox":[274,344,450,56]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":9,"text":"降低丢失更新风险","textPreview":"降低丢失更新风险","textChars":8,"textLines":1,"bbox":[744,344,480,56]}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":9,"bbox":[54,406,1180,74]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":9,"text":"模板搜索","textPreview":"模板搜索","textChars":4,"textLines":1,"bbox":[64,418,190,56]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":9,"text":"SQL 条件过滤 + 分页","textPreview":"SQL 条件过滤 + 分页","textChars":13,"textLines":1,"bbox":[274,418,450,56]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":9,"text":"避免内存过滤和分页失真","textPreview":"避免内存过滤和分页失真","textChars":11,"textLines":1,"bbox":[744,418,480,56]}
+{"kind":"shape","id":"sh/cfa9w3m9","slide":9,"bbox":[54,480,1180,74]}
+{"kind":"textbox","id":"sh/1032lszq","slide":9,"text":"热门排行","textPreview":"热门排行","textChars":4,"textLines":1,"bbox":[64,492,190,56]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":9,"text":"SQL 聚合近期使用量","textPreview":"SQL 聚合近期使用量","textChars":11,"textLines":1,"bbox":[274,492,450,56]}
+{"kind":"textbox","id":"sh/judg7ads","slide":9,"text":"减少 Java 侧全量计算","textPreview":"减少 Java 侧全量计算","textChars":13,"textLines":1,"bbox":[744,492,480,56]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":9,"text":"后端 MockMvc 测试覆盖 7 个核心用例，验证查询、登录、购买幂等、权限校验和取消收藏。","textPreview":"后端 MockMvc 测试覆盖 7 个核心用例，验证查询、登录、购买幂等、权限校验和取消收藏。","textChars":47,"textLines":1,"bbox":[54,570,1060,44]}
+{"kind":"notes","id":"nt/ufsf9z","slide":9,"text":""}
+{"kind":"slide","id":"sl/9862l5","slide":10,"title":"系统已完成核心闭环，后续可增强真实生产能力","textShapes":9}
+{"kind":"textbox","id":"sh/4nap4r65","slide":10,"text":"系统已完成核心闭环，后续可增强真实生产能力","textPreview":"系统已完成核心闭环，后续可增强真实生产能力","textChars":21,"textLines":1,"bbox":[54,42,900,60]}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":10,"text":"课程设计版本强调数据库设计完整性、业务流程可演示和结构可扩展。","textPreview":"课程设计版本强调数据库设计完整性、业务流程可演示和结构可扩展。","textChars":31,"textLines":1,"bbox":[54,104,920,34]}
+{"kind":"shape","id":"sh/mhk3q5o7","slide":10,"bbox":[54,150,1170,2]}
+{"kind":"shape","id":"sh/twra5gbq","slide":10,"bbox":[54,190,350,190]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":10,"text":"已完成","textPreview":"已完成","textChars":3,"textLines":1,"bbox":[72,208,314,36]}
+{"kind":"textbox","id":"sh/bq1oryts","slide":10,"text":"前后端分离、核心表结构、统一服务编排、模板交易使用闭环、统计分析和自动化测试。","textPreview":"前后端分离、核心表结构、统一服务编排、模板交易使用闭环、统计分析和自动化测试。","textChars":39,"textLines":1,"bbox":[72,256,314,108]}
+{"kind":"shape","id":"sh/m58z25kb","slide":10,"bbox":[456,190,350,190]}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":10,"text":"可改进","textPreview":"可改进","textChars":3,"textLines":1,"bbox":[474,208,314,36]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":10,"text":"接入真实登录态、完善活动领取、增强余额并发扣减、增加模板编辑审核和语义推荐。","textPreview":"接入真实登录态、完善活动领取、增强余额并发扣减、增加模板编辑审核和语义推荐。","textChars":38,"textLines":1,"bbox":[474,256,314,108]}
+{"kind":"shape","id":"sh/adsji5sn","slide":10,"bbox":[858,190,350,190]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":10,"text":"提交材料","textPreview":"提交材料","textChars":4,"textLines":1,"bbox":[876,208,314,36]}
+{"kind":"textbox","id":"sh/sji5snel","slide":10,"text":"课程设计报告、汇报PPT和源代码压缩包；文件名按“小组人员姓名.zip”提交。","textPreview":"课程设计报告、汇报PPT和源代码压缩包；文件名按“小组人员姓名.zip”提交。","textChars":39,"textLines":1,"bbox":[876,256,314,108]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":10,"text":"答辩演示建议路径：启动后端 → 打开前端 → 搜索模板 → 查看详情 → 购买/使用 → 查看个人中心和平台看板。","textPreview":"答辩演示建议路径：启动后端 → 打开前端 → 搜索模板 → 查看详情 → 购买/使用 → 查看个人中心和平台看板。","textChars":57,"textLines":1,"bbox":[54,500,1090,72]}
+{"kind":"notes","id":"nt/9862l5","slide":10,"text":""}

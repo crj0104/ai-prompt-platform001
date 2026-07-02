@@ -1,0 +1,865 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/z2leh6",
+    "id": "z2leh6",
+    "slide": 2,
+    "layoutId": "84bb47b2-4c3f-46a0-a774-3405c0f6d07f",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "87ea4dce-7ef1-4adc-84a1-d3c738a3a55f",
+    "masterLayoutName": "Master",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "84bb47b2-4c3f-46a0-a774-3405c0f6d07f",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "87ea4dce-7ef1-4adc-84a1-d3c738a3a55f",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "87ea4dce-7ef1-4adc-84a1-d3c738a3a55f",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9gr2p8nq",
+      "id": "1",
+      "bbox": [
+        54,
+        42,
+        900,
+        60
+      ],
+      "geometry": "rect",
+      "text": "课题要解决的是提示词模板的完整业务闭环",
+      "textPreview": "课题要解决的是提示词模板的完整业务闭环",
+      "resolvedFontSize": 39,
+      "resolvedTextStyle": {
+        "fontSize": 39,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "课题要解决的是提示词模板的完整业务闭环"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "课题要解决的是提示词模板的完整业务闭环",
+          "resolvedTextStyle": {
+            "fontSize": 39,
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "课题要解决的是提示词模板的完整业务闭环",
+              "fontSize": 39,
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2p8nqxs7",
+      "id": "2",
+      "bbox": [
+        54,
+        104,
+        920,
+        34
+      ],
+      "geometry": "rect",
+      "text": "系统不是单纯模板列表，而是覆盖检索、交易、使用、评价和统计。",
+      "textPreview": "系统不是单纯模板列表，而是覆盖检索、交易、使用、评价和统计。",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#555555",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "系统不是单纯模板列表，而是覆盖检索、交易、使用、评价和统计。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "系统不是单纯模板列表，而是覆盖检索、交易、使用、评价和统计。",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#555555",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "系统不是单纯模板列表，而是覆盖检索、交易、使用、评价和统计。",
+              "fontSize": 18,
+              "color": "#555555",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ra5gbq1o",
+      "id": "3",
+      "bbox": [
+        54,
+        150,
+        1170,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#B8BCC4",
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kjm1cfa9",
+      "id": "4",
+      "bbox": [
+        54,
+        188,
+        350,
+        152
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFF1EA",
+      "lineColor": "#FF6B35",
+      "lineWidth": 1
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/94fu18jq",
+      "id": "5",
+      "bbox": [
+        72,
+        206,
+        314,
+        36
+      ],
+      "geometry": "rect",
+      "text": "设计目标",
+      "textPreview": "设计目标",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "设计目标"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "设计目标",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "设计目标",
+              "fontSize": 24,
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2hwfyxob",
+      "id": "6",
+      "bbox": [
+        72,
+        254,
+        314,
+        70
+      ],
+      "geometry": "rect",
+      "text": "实现一个可运行、可演示、结构清晰的前后端分离数据库应用系统。",
+      "textPreview": "实现一个可运行、可演示、结构清晰的前后端分离数据库应用系统。",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#555555",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "实现一个可运行、可演示、结构清晰"
+          },
+          {
+            "index": 2,
+            "text": "的前后端分离数据库应用系统。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "实现一个可运行、可演示、结构清晰的前后端分离数据库应用系统。",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#555555",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "实现一个可运行、可演示、结构清晰的前后端分离数据库应用系统。",
+              "fontSize": 18,
+              "color": "#555555",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/r2p8nqxs",
+      "id": "7",
+      "bbox": [
+        456,
+        188,
+        350,
+        152
+      ],
+      "geometry": "rect",
+      "fillColor": "#EDEDED",
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kb6xkf6d",
+      "id": "8",
+      "bbox": [
+        474,
+        206,
+        314,
+        36
+      ],
+      "geometry": "rect",
+      "text": "设计要求",
+      "textPreview": "设计要求",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "设计要求"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "设计要求",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "设计要求",
+              "fontSize": 24,
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9w3m94fu",
+      "id": "9",
+      "bbox": [
+        474,
+        254,
+        314,
+        70
+      ],
+      "geometry": "rect",
+      "text": "完成需求分析、E-R模型、逻辑和物理设计、功能实现、并发与查询优化实验。",
+      "textPreview": "完成需求分析、E-R模型、逻辑和物理设计、功能实现、并发与查询优化实验。",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#555555",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "完成需求分析、E-R模型、逻辑和物理"
+          },
+          {
+            "index": 2,
+            "text": "设计、功能实现、并发与查询优化实"
+          },
+          {
+            "index": 3,
+            "text": "验。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "完成需求分析、E-R模型、逻辑和物理设计、功能实现、并发与查询优化实验。",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#555555",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "完成需求分析、E-R模型、逻辑和物理设计、功能实现、并发与查询优化实验。",
+              "fontSize": 18,
+              "color": "#555555",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xczed8v6",
+      "id": "10",
+      "bbox": [
+        858,
+        188,
+        350,
+        152
+      ],
+      "geometry": "rect",
+      "fillColor": "#EDEDED",
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8v6psfil",
+      "id": "11",
+      "bbox": [
+        876,
+        206,
+        314,
+        36
+      ],
+      "geometry": "rect",
+      "text": "小组分工",
+      "textPreview": "小组分工",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "小组分工"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "小组分工",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "小组分工",
+              "fontSize": 24,
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fa9w3m94",
+      "id": "12",
+      "bbox": [
+        876,
+        254,
+        314,
+        70
+      ],
+      "geometry": "rect",
+      "text": "成员A负责数据库与后端；成员B负责前端、测试、文档和演示材料。",
+      "textPreview": "成员A负责数据库与后端；成员B负责前端、测试、文档和演示材料。",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#555555",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "成员A负责数据库与后端；成员B负责"
+          },
+          {
+            "index": 2,
+            "text": "前端、测试、文档和演示材料。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "成员A负责数据库与后端；成员B负责前端、测试、文档和演示材料。",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#555555",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "成员A负责数据库与后端；成员B负责前端、测试、文档和演示材料。",
+              "fontSize": 18,
+              "color": "#555555",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qpg3ex0n",
+      "id": "13",
+      "bbox": [
+        54,
+        429,
+        10,
+        10
+      ],
+      "geometry": "rect",
+      "fillColor": "#FF6B35",
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x4nap4r6",
+      "id": "14",
+      "bbox": [
+        80,
+        420,
+        954,
+        48
+      ],
+      "geometry": "rect",
+      "text": "数据库表结构覆盖核心业务数据",
+      "textPreview": "数据库表结构覆盖核心业务数据",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "数据库表结构覆盖核心业务数据"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "数据库表结构覆盖核心业务数据",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#111111",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "数据库表结构覆盖核心业务数据",
+              "fontSize": 23,
+              "color": "#111111",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8jqh0fep",
+      "id": "15",
+      "bbox": [
+        54,
+        481,
+        10,
+        10
+      ],
+      "geometry": "rect",
+      "fillColor": "#FF6B35",
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fyxobm58",
+      "id": "16",
+      "bbox": [
+        80,
+        472,
+        954,
+        48
+      ],
+      "geometry": "rect",
+      "text": "后端统一编排服务组织领域流程",
+      "textPreview": "后端统一编排服务组织领域流程",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "后端统一编排服务组织领域流程"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "后端统一编排服务组织领域流程",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#111111",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "后端统一编排服务组织领域流程",
+              "fontSize": 23,
+              "color": "#111111",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qd4vmtwr",
+      "id": "17",
+      "bbox": [
+        54,
+        533,
+        10,
+        10
+      ],
+      "geometry": "rect",
+      "fillColor": "#FF6B35",
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xs72x4na",
+      "id": "18",
+      "bbox": [
+        80,
+        524,
+        954,
+        48
+      ],
+      "geometry": "rect",
+      "text": "前端独立调用 REST API 完成演示",
+      "textPreview": "前端独立调用 REST API 完成演示",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "前端独立调用 REST API 完成演示"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "前端独立调用 REST API 完成演示",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#111111",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "前端独立调用 REST API 完成演示",
+              "fontSize": 23,
+              "color": "#111111",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

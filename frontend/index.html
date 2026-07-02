@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 提示词模板平台</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <div>
+        <p class="page-caption">课程设计演示系统</p>
+        <h1 id="viewTitle">模板市场</h1>
+        <p id="viewSubtitle">搜索、筛选、购买并使用 AI 提示词模板。</p>
+      </div>
+      <form id="loginForm" class="login-form">
+        <input name="account" placeholder="账号/邮箱/手机号" value="demo_user">
+        <input name="password" type="password" placeholder="密码" value="demo_hash">
+        <button type="submit">登录</button>
+      </form>
+    </header>
+
+    <section class="nav-bar">
+      <button class="nav-item active" data-view="market">模板市场</button>
+      <button class="nav-item" data-view="profile">个人中心</button>
+      <button class="nav-item" data-view="creator">创作者看板</button>
+      <button class="nav-item" data-view="platform">平台总览</button>
+      <button id="reloadBtn" class="ghost-outline nav-refresh" type="button">刷新数据</button>
+    </section>
+
+    <section id="message" class="message" hidden></section>
+
+    <section id="marketView" class="view active">
+      <form id="searchForm" class="toolbar">
+        <input name="keyword" placeholder="搜索标题、场景或提示词内容">
+        <select name="tag" id="tagSelect">
+          <option value="">全部标签</option>
+        </select>
+        <select name="sort">
+          <option value="hot">按热度</option>
+          <option value="score">按评分</option>
+          <option value="latest">按最新</option>
+        </select>
+        <input name="minScore" type="number" min="0" max="5" step="0.1" placeholder="最低评分">
+        <button type="submit">查询</button>
+      </form>
+
+      <section class="table-panel">
+        <div class="section-head">
+          <h2>模板列表</h2>
+          <span class="muted">点击行或“查看详情”打开弹窗</span>
+        </div>
+        <div id="templateList" class="template-list"></div>
+      </section>
+    </section>
+
+    <section id="profileView" class="view">
+      <div id="profilePanel" class="stack-panel"></div>
+    </section>
+
+    <section id="creatorView" class="view">
+      <div id="creatorPanel" class="stack-panel"></div>
+    </section>
+
+    <section id="platformView" class="view">
+      <div id="platformPanel" class="stack-panel"></div>
+    </section>
+  </main>
+
+  <div id="templateModal" class="modal" hidden>
+    <div class="modal-mask" data-close-modal></div>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <header class="modal-header">
+        <h2 id="modalTitle">模板详情</h2>
+        <button id="closeModalBtn" class="icon-btn" type="button" aria-label="关闭">关闭</button>
+      </header>
+      <div id="modalBody" class="modal-body"></div>
+    </section>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

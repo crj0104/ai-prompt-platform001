@@ -1,8 +1,31 @@
 HELP.md
 target/
+backend/target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+### Local secrets ###
+.env
+.env.*
+*.local
+application-local.properties
+application-*.local.properties
+*.pem
+*.key
+*.p12
+*.jks
+
+### Generated course artifacts ###
+deliverables/
+work/
+*.zip
+*.docx
+*.pptx
+*.ndjson
+
+### Node / generated previews ###
+node_modules/
 
 ### STS ###
 .apt_generated

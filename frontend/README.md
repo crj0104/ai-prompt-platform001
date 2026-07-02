@@ -6,7 +6,7 @@ This is the separated frontend for the course project.
 
 1. Create the MySQL database `ai_prompt_template_platform`.
 
-2. Fill in MySQL username and password in `../backend/src/main/resources/application.properties`.
+2. Set MySQL connection values with environment variables before starting the backend, for example `DB_USERNAME` and `DB_PASSWORD`.
 
 3. Start the backend in `../backend`:
 

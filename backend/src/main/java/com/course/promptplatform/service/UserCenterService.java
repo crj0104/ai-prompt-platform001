@@ -12,4 +12,6 @@ public interface UserCenterService {
     Map<String, Object> login(LoginRequest request);
 
     UserProfileView getProfile(Long userId);
+
+    Map<String, Object> upgradeToCreator(Long userId);
 }

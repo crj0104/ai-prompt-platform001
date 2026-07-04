@@ -1,4 +1,5 @@
--- 请先手动创建数据库 ai_prompt_template_platform，再启动项目执行以下建表脚本。
+CREATE DATABASE IF NOT EXISTS ai_prompt_template_platform DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE ai_prompt_template_platform;
 
 CREATE TABLE IF NOT EXISTS sys_user (
     user_id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '用户主键',
@@ -7,7 +8,7 @@ CREATE TABLE IF NOT EXISTS sys_user (
     phone VARCHAR(20) UNIQUE COMMENT '手机号',
     email VARCHAR(100) UNIQUE COMMENT '邮箱',
     creator_score INT NOT NULL DEFAULT 0 COMMENT '创作者积分，用于计算等级',
-    creator_level VARCHAR(20) NOT NULL DEFAULT 'B级创作者' COMMENT '创作者等级，便于高频展示',
+    creator_level VARCHAR(20) DEFAULT NULL COMMENT '创作者等级，升级后设置',
     balance DECIMAL(10, 2) NOT NULL DEFAULT 0.00 COMMENT '账户余额',
     user_status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE' COMMENT '账户状态',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',

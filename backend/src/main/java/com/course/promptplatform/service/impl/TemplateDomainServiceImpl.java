@@ -15,7 +15,9 @@ import com.course.promptplatform.mapper.TagMapper;
 import com.course.promptplatform.mapper.TemplateFavoriteMapper;
 import com.course.promptplatform.mapper.TemplateReviewMapper;
 import com.course.promptplatform.mapper.TemplateTagRelMapper;
+import com.course.promptplatform.model.ApiRequests.PublishTemplateRequest;
 import com.course.promptplatform.model.ApiRequests.SearchRequest;
+import com.course.promptplatform.model.ApiRequests.UpdateTemplateRequest;
 import com.course.promptplatform.model.PortalViewModels.ReviewView;
 import com.course.promptplatform.model.PortalViewModels.TemplateCardView;
 import com.course.promptplatform.model.PortalViewModels.TemplateDetailView;
@@ -23,6 +25,7 @@ import com.course.promptplatform.model.PortalViewModels.VersionView;
 import com.course.promptplatform.model.query.TemplateQueryRow;
 import com.course.promptplatform.service.TemplateDomainService;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +33,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -113,7 +117,10 @@ public class TemplateDomainServiceImpl implements TemplateDomainService {
     @Override
     public List<TemplateCardView> publishedTemplates(Long userId) {
         List<PromptTemplateEntity> entities = promptTemplateMapper.selectList(
-                new LambdaQueryWrapper<PromptTemplateEntity>().eq(PromptTemplateEntity::getCreatorUserId, userId));
+                new LambdaQueryWrapper<PromptTemplateEntity>()
+                        .eq(PromptTemplateEntity::getCreatorUserId, userId)
+                        .ne(PromptTemplateEntity::getShelfStatus, "DELETED")
+                        .orderByDesc(PromptTemplateEntity::getUpdatedAt));
         return buildTemplateCardsFromEntities(entities);
     }
 
@@ -129,6 +136,131 @@ public class TemplateDomainServiceImpl implements TemplateDomainService {
         return buildTemplateCardsFromEntities(entities).stream()
                 .sorted(Comparator.comparing(TemplateCardView::getUseCount).reversed())
                 .toList();
+    }
+
+    @Override
+    @Transactional
+    public Map<String, Object> publishTemplate(Long userId, PublishTemplateRequest request) {
+        SysUserEntity user = sysUserMapper.selectById(userId);
+        if (user == null) {
+            return Map.of("success", false, "message", "用户不存在");
+        }
+        if (user.getCreatorLevel() == null || user.getCreatorLevel().isBlank()) {
+            return Map.of("success", false, "message", "请先开通创作者身份");
+        }
+
+        LocalDateTime now = LocalDateTime.now();
+        BigDecimal price = request.getPrice() == null ? BigDecimal.ZERO : request.getPrice();
+        if (price.compareTo(BigDecimal.ZERO) < 0) {
+            return Map.of("success", false, "message", "价格不能小于 0");
+        }
+        String priceType = price.compareTo(BigDecimal.ZERO) <= 0 ? "FREE" : "PAID";
+        if ("FREE".equalsIgnoreCase(request.getPriceType())) {
+            priceType = "FREE";
+            price = BigDecimal.ZERO;
+        }
+        String sceneDesc = request.getSceneDesc() == null || request.getSceneDesc().isBlank()
+                ? request.getTitle()
+                : request.getSceneDesc();
+
+        PromptTemplateEntity template = new PromptTemplateEntity();
+        template.setCreatorUserId(userId);
+        template.setTitle(request.getTitle());
+        template.setSceneDesc(sceneDesc);
+        template.setPriceType(priceType);
+        template.setPrice(price);
+        template.setShelfStatus("ON_SHELF");
+        template.setUseCount(0);
+        template.setFavoriteCount(0);
+        template.setAvgScore(0.0);
+        template.setReviewCount(0);
+        template.setCreatedAt(now);
+        template.setUpdatedAt(now);
+        promptTemplateMapper.insert(template);
+
+        PromptTemplateVersionEntity version = new PromptTemplateVersionEntity();
+        version.setTemplateId(template.getTemplateId());
+        version.setVersionNo("v1.0");
+        version.setPromptContent(request.getPromptContent());
+        version.setChangeNote("首次发布");
+        version.setEditorUserId(userId);
+        version.setCreatedAt(now);
+        versionMapper.insert(version);
+
+        template.setCurrentVersionId(version.getVersionId());
+        promptTemplateMapper.updateById(template);
+
+        bindTags(template.getTemplateId(), request.getTags(), now);
+        return Map.of("success", true,
+                "message", "模板发布成功",
+                "templateId", template.getTemplateId(),
+                "versionId", version.getVersionId());
+    }
+
+    @Override
+    @Transactional
+    public Map<String, Object> updateTemplate(Long userId, Long templateId, UpdateTemplateRequest request) {
+        PromptTemplateEntity template = promptTemplateMapper.selectById(templateId);
+        if (template == null || "DELETED".equalsIgnoreCase(template.getShelfStatus())) {
+            return Map.of("success", false, "message", "模板不存在");
+        }
+        if (!userId.equals(template.getCreatorUserId())) {
+            return Map.of("success", false, "message", "只能修改自己发布的模板");
+        }
+
+        LocalDateTime now = LocalDateTime.now();
+        BigDecimal price = request.getPrice() == null ? BigDecimal.ZERO : request.getPrice();
+        if (price.compareTo(BigDecimal.ZERO) < 0) {
+            return Map.of("success", false, "message", "价格不能小于 0");
+        }
+        String priceType = price.compareTo(BigDecimal.ZERO) <= 0 ? "FREE" : "PAID";
+        if ("FREE".equalsIgnoreCase(request.getPriceType())) {
+            priceType = "FREE";
+            price = BigDecimal.ZERO;
+        }
+
+        template.setTitle(request.getTitle());
+        template.setSceneDesc(request.getSceneDesc() == null || request.getSceneDesc().isBlank()
+                ? request.getTitle()
+                : request.getSceneDesc());
+        template.setPriceType(priceType);
+        template.setPrice(price);
+        template.setUpdatedAt(now);
+
+        PromptTemplateVersionEntity version = new PromptTemplateVersionEntity();
+        version.setTemplateId(templateId);
+        version.setVersionNo(nextVersionNo(templateId));
+        version.setPromptContent(request.getPromptContent());
+        version.setChangeNote("创作者修改模板");
+        version.setEditorUserId(userId);
+        version.setSourceVersionId(template.getCurrentVersionId());
+        version.setCreatedAt(now);
+        versionMapper.insert(version);
+
+        template.setCurrentVersionId(version.getVersionId());
+        promptTemplateMapper.updateById(template);
+        replaceTags(templateId, request.getTags(), now);
+
+        return Map.of("success", true,
+                "message", "模板修改成功",
+                "templateId", templateId,
+                "versionId", version.getVersionId());
+    }
+
+    @Override
+    @Transactional
+    public Map<String, Object> deleteTemplate(Long userId, Long templateId) {
+        PromptTemplateEntity template = promptTemplateMapper.selectById(templateId);
+        if (template == null || "DELETED".equalsIgnoreCase(template.getShelfStatus())) {
+            return Map.of("success", false, "message", "模板不存在");
+        }
+        if (!userId.equals(template.getCreatorUserId())) {
+            return Map.of("success", false, "message", "只能删除自己发布的模板");
+        }
+        template.setShelfStatus("DELETED");
+        template.setUpdatedAt(LocalDateTime.now());
+        promptTemplateMapper.updateById(template);
+        return Map.of("success", true, "message", "模板已删除");
     }
 
     private List<TemplateCardView> buildTemplateCardsFromEntities(List<PromptTemplateEntity> entities) {
@@ -188,6 +320,49 @@ public class TemplateDomainServiceImpl implements TemplateDomainService {
         return relations.stream().collect(Collectors.groupingBy(
                 TemplateTagRelEntity::getTemplateId,
                 Collectors.mapping(rel -> tagMap.get(rel.getTagId()), Collectors.toList())));
+    }
+
+    private void bindTags(Long templateId, List<String> rawTags, LocalDateTime now) {
+        if (rawTags == null || rawTags.isEmpty()) {
+            return;
+        }
+        List<String> tagNames = rawTags.stream()
+                .map(tag -> tag == null ? "" : tag.trim())
+                .filter(tag -> !tag.isBlank())
+                .distinct()
+                .limit(5)
+                .toList();
+        for (String tagName : tagNames) {
+            TagEntity tag = tagMapper.selectOne(new LambdaQueryWrapper<TagEntity>()
+                    .eq(TagEntity::getTagName, tagName)
+                    .last("LIMIT 1"));
+            if (tag == null) {
+                tag = new TagEntity();
+                tag.setTagName(tagName);
+                tag.setTagLevel(1);
+                tag.setTagPath(tagName);
+                tag.setSortNo(99);
+                tag.setCreatedAt(now);
+                tagMapper.insert(tag);
+            }
+            TemplateTagRelEntity rel = new TemplateTagRelEntity();
+            rel.setTemplateId(templateId);
+            rel.setTagId(tag.getTagId());
+            rel.setCreatedAt(now);
+            templateTagRelMapper.insert(rel);
+        }
+    }
+
+    private void replaceTags(Long templateId, List<String> rawTags, LocalDateTime now) {
+        templateTagRelMapper.delete(new LambdaQueryWrapper<TemplateTagRelEntity>()
+                .eq(TemplateTagRelEntity::getTemplateId, templateId));
+        bindTags(templateId, rawTags, now);
+    }
+
+    private String nextVersionNo(Long templateId) {
+        Long count = versionMapper.selectCount(new LambdaQueryWrapper<PromptTemplateVersionEntity>()
+                .eq(PromptTemplateVersionEntity::getTemplateId, templateId));
+        return "v" + (count + 1) + ".0";
     }
 
     private Map<Long, String> resolveCurrentPromptMap(List<PromptTemplateEntity> templates) {

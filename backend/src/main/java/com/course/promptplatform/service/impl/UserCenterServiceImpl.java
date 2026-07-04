@@ -2,6 +2,8 @@ package com.course.promptplatform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.course.promptplatform.entity.SysUserEntity;
+import com.course.promptplatform.entity.PromptTemplateEntity;
+import com.course.promptplatform.mapper.PromptTemplateMapper;
 import com.course.promptplatform.mapper.SysUserMapper;
 import com.course.promptplatform.model.ApiRequests.LoginRequest;
 import com.course.promptplatform.model.ApiRequests.RegisterRequest;
@@ -25,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserCenterServiceImpl implements UserCenterService {
 
     private final SysUserMapper sysUserMapper;
+    private final PromptTemplateMapper promptTemplateMapper;
     private final TemplateDomainService templateDomainService;
     private final TradeService tradeService;
 
@@ -44,16 +47,21 @@ public class UserCenterServiceImpl implements UserCenterService {
         SysUserEntity user = new SysUserEntity();
         user.setUsername(request.getUsername());
         user.setPasswordHash(hashPassword(request.getPassword()));
-        user.setPhone(request.getPhone());
-        user.setEmail(request.getEmail());
+        user.setPhone(trimToNull(request.getPhone()));
+        user.setEmail(trimToNull(request.getEmail()));
         user.setCreatorScore(0);
-        user.setCreatorLevel("B");
+        user.setCreatorLevel(null);
         user.setBalance(new BigDecimal("0.00"));
         user.setUserStatus("ACTIVE");
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
         sysUserMapper.insert(user);
-        return Map.of("success", true, "message", "Register successful", "username", user.getUsername());
+        return Map.of("success", true, "message", "Registration successful", "userId", user.getUserId());
+    }
+
+    private String trimToNull(String value) {
+        if (value == null || value.isBlank()) return null;
+        return value.trim();
     }
 
     @Override
@@ -65,7 +73,38 @@ public class UserCenterServiceImpl implements UserCenterService {
         if (!passwordMatches(request.getPassword(), user.getPasswordHash())) {
             return Map.of("success", false, "message", "Invalid password");
         }
-        return Map.of("success", true, "message", "Login successful", "account", request.getAccount(), "userId", user.getUserId());
+        String role = resolveRole(user);
+        return Map.of("success", true, "message", "Login successful",
+                "account", request.getAccount(),
+                "userId", user.getUserId(),
+                "username", user.getUsername(),
+                "role", role);
+    }
+
+    private String resolveRole(SysUserEntity user) {
+        if ("admin".equals(user.getUsername())) return "ADMIN";
+        Long templateCount = promptTemplateMapper.selectCount(new LambdaQueryWrapper<PromptTemplateEntity>()
+                .eq(PromptTemplateEntity::getCreatorUserId, user.getUserId()));
+        if (templateCount != null && templateCount > 0) return "CREATOR";
+        if (user.getCreatorLevel() != null) return "CREATOR";
+        return "USER";
+    }
+
+    @Override
+    public Map<String, Object> upgradeToCreator(Long userId) {
+        SysUserEntity user = sysUserMapper.selectById(userId);
+        if (user == null) return Map.of("success", false, "message", "User not found");
+        user.setCreatorLevel("A级创作者");
+        if (user.getCreatorScore() == null || user.getCreatorScore() < 1000) {
+            user.setCreatorScore(1000);
+        }
+        user.setUpdatedAt(LocalDateTime.now());
+        sysUserMapper.updateById(user);
+        return Map.of("success", true,
+                "message", "已开通创作者身份",
+                "role", "CREATOR",
+                "userId", user.getUserId(),
+                "username", user.getUsername());
     }
 
     @Override

@@ -2,6 +2,9 @@ package com.course.promptplatform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.course.promptplatform.entity.CampaignClaimEntity;
+import com.course.promptplatform.entity.CampaignTemplateEntity;
+import com.course.promptplatform.entity.FreeCampaignEntity;
 import com.course.promptplatform.entity.PromptTemplateEntity;
 import com.course.promptplatform.entity.PromptTemplateVersionEntity;
 import com.course.promptplatform.entity.SysUserEntity;
@@ -10,6 +13,9 @@ import com.course.promptplatform.entity.TemplateOrderEntity;
 import com.course.promptplatform.entity.TemplateReviewEntity;
 import com.course.promptplatform.entity.TemplateUseLogEntity;
 import com.course.promptplatform.entity.UserBalanceLogEntity;
+import com.course.promptplatform.mapper.CampaignClaimMapper;
+import com.course.promptplatform.mapper.CampaignTemplateMapper;
+import com.course.promptplatform.mapper.FreeCampaignMapper;
 import com.course.promptplatform.mapper.PromptTemplateMapper;
 import com.course.promptplatform.mapper.PromptTemplateVersionMapper;
 import com.course.promptplatform.mapper.SysUserMapper;
@@ -46,6 +52,9 @@ public class TradeServiceImpl implements TradeService {
     private final UserBalanceLogMapper userBalanceLogMapper;
     private final PromptTemplateVersionMapper versionMapper;
     private final SysUserMapper sysUserMapper;
+    private final FreeCampaignMapper freeCampaignMapper;
+    private final CampaignTemplateMapper campaignTemplateMapper;
+    private final CampaignClaimMapper campaignClaimMapper;
 
     @Override
     @Transactional
@@ -114,6 +123,11 @@ public class TradeServiceImpl implements TradeService {
                     "balance", user.getBalance());
         }
 
+        CampaignTemplateEntity activeCampaignTemplate = findActiveCampaignTemplate(template.getTemplateId());
+        if (activeCampaignTemplate != null) {
+            return claimCampaignTemplate(user, template, activeCampaignTemplate);
+        }
+
         boolean free = isFree(template);
         if (!free && user.getBalance().compareTo(template.getPrice()) < 0) {
             return Map.of("success", false, "message", "Insufficient balance");
@@ -179,10 +193,12 @@ public class TradeServiceImpl implements TradeService {
 
         incrementTemplateCounter(templateId, "use_count", 1);
         PromptTemplateEntity updatedTemplate = promptTemplateMapper.selectById(templateId);
+        String usageResult = "【输入摘要】\n" + inputSummary + "\n\n【套用模板】\n" + currentVersion.getPromptContent();
         return Map.of(
                 "success", true,
-                "message", "Usage saved",
+                "message", "模板使用成功，已写入使用日志",
                 "promptContent", currentVersion.getPromptContent(),
+                "usageResult", usageResult,
                 "useCount", updatedTemplate.getUseCount());
     }
 
@@ -241,6 +257,7 @@ public class TradeServiceImpl implements TradeService {
                         .orderByDesc(TemplateOrderEntity::getCreatedAt))
                 .stream()
                 .map(order -> OrderView.builder()
+                        .templateId(order.getTemplateId())
                         .orderNo(order.getOrderNo())
                         .templateTitle(templateMap.getOrDefault(order.getTemplateId(), "Unknown template"))
                         .payAmount(order.getPayAmount())
@@ -294,9 +311,73 @@ public class TradeServiceImpl implements TradeService {
                 .eq(TemplateOrderEntity::getUserId, userId)
                 .eq(TemplateOrderEntity::getTemplateId, templateId)
                 .eq(TemplateOrderEntity::getOrderStatus, "SUCCESS")
-                .in(TemplateOrderEntity::getPayStatus, List.of("PAID", "FREE_CLAIMED"))
+                .in(TemplateOrderEntity::getPayStatus, List.of("PAID", "FREE_CLAIMED", "FREE_CAMPAIGN"))
                 .orderByDesc(TemplateOrderEntity::getCreatedAt)
                 .last("LIMIT 1"));
+    }
+
+    private CampaignTemplateEntity findActiveCampaignTemplate(Long templateId) {
+        LocalDateTime now = LocalDateTime.now();
+        List<FreeCampaignEntity> activeCampaigns = freeCampaignMapper.selectList(new LambdaQueryWrapper<FreeCampaignEntity>()
+                .eq(FreeCampaignEntity::getCampaignStatus, "ACTIVE")
+                .le(FreeCampaignEntity::getStartTime, now)
+                .ge(FreeCampaignEntity::getEndTime, now));
+        if (activeCampaigns.isEmpty()) {
+            return null;
+        }
+        List<Long> campaignIds = activeCampaigns.stream().map(FreeCampaignEntity::getCampaignId).toList();
+        return campaignTemplateMapper.selectList(new LambdaQueryWrapper<CampaignTemplateEntity>()
+                        .in(CampaignTemplateEntity::getCampaignId, campaignIds)
+                        .eq(CampaignTemplateEntity::getTemplateId, templateId)
+                        .gt(CampaignTemplateEntity::getRemainingQuota, 0)
+                        .orderByDesc(CampaignTemplateEntity::getCreatedAt))
+                .stream()
+                .findFirst()
+                .orElse(null);
+    }
+
+    private Map<String, Object> claimCampaignTemplate(SysUserEntity user, PromptTemplateEntity template, CampaignTemplateEntity campaignTemplate) {
+        CampaignClaimEntity existingClaim = campaignClaimMapper.selectOne(new LambdaQueryWrapper<CampaignClaimEntity>()
+                .eq(CampaignClaimEntity::getCampaignTemplateId, campaignTemplate.getCampaignTemplateId())
+                .eq(CampaignClaimEntity::getUserId, user.getUserId())
+                .last("LIMIT 1"));
+        if (existingClaim != null && existingClaim.getOrderId() != null) {
+            TemplateOrderEntity order = templateOrderMapper.selectById(existingClaim.getOrderId());
+            return Map.of("success", true,
+                    "message", "已领取过该免费活动模板",
+                    "order", toOrderView(order, template),
+                    "balance", user.getBalance());
+        }
+
+        TemplateOrderEntity order = new TemplateOrderEntity();
+        order.setOrderNo("ORD" + System.currentTimeMillis());
+        order.setUserId(user.getUserId());
+        order.setTemplateId(template.getTemplateId());
+        order.setOriginAmount(template.getPrice());
+        order.setPayAmount(BigDecimal.ZERO);
+        order.setPayStatus("FREE_CAMPAIGN");
+        order.setOrderStatus("SUCCESS");
+        order.setPayTime(LocalDateTime.now());
+        order.setCreatedAt(LocalDateTime.now());
+        templateOrderMapper.insert(order);
+
+        CampaignClaimEntity claim = new CampaignClaimEntity();
+        claim.setCampaignTemplateId(campaignTemplate.getCampaignTemplateId());
+        claim.setUserId(user.getUserId());
+        claim.setOrderId(order.getOrderId());
+        claim.setClaimStatus("SUCCESS");
+        claim.setClaimTime(LocalDateTime.now());
+        campaignClaimMapper.insert(claim);
+
+        campaignTemplateMapper.update(null, new LambdaUpdateWrapper<CampaignTemplateEntity>()
+                .eq(CampaignTemplateEntity::getCampaignTemplateId, campaignTemplate.getCampaignTemplateId())
+                .gt(CampaignTemplateEntity::getRemainingQuota, 0)
+                .setSql("remaining_quota = remaining_quota - 1"));
+
+        return Map.of("success", true,
+                "message", "限时免费活动领取成功",
+                "order", toOrderView(order, template),
+                "balance", user.getBalance());
     }
 
     private PromptTemplateVersionEntity resolveCurrentVersion(PromptTemplateEntity template) {
@@ -327,11 +408,58 @@ public class TradeServiceImpl implements TradeService {
 
     private OrderView toOrderView(TemplateOrderEntity order, PromptTemplateEntity template) {
         return OrderView.builder()
+                .templateId(template.getTemplateId())
                 .orderNo(order.getOrderNo())
                 .templateTitle(template.getTitle())
                 .payAmount(order.getPayAmount())
                 .payStatus(order.getPayStatus())
                 .createdAt(order.getCreatedAt())
                 .build();
+    }
+
+    @Override
+    @Transactional
+    public Map<String, Object> setTemplateFree(Long templateId) {
+        PromptTemplateEntity template = promptTemplateMapper.selectById(templateId);
+        if (template == null) return Map.of("success", false, "message", "模板不存在");
+        LocalDateTime now = LocalDateTime.now();
+        FreeCampaignEntity campaign = freeCampaignMapper.selectList(new LambdaQueryWrapper<FreeCampaignEntity>()
+                        .eq(FreeCampaignEntity::getCampaignName, "平台限时免费活动")
+                        .eq(FreeCampaignEntity::getCampaignStatus, "ACTIVE")
+                        .le(FreeCampaignEntity::getStartTime, now)
+                        .ge(FreeCampaignEntity::getEndTime, now)
+                        .orderByDesc(FreeCampaignEntity::getCreatedAt))
+                .stream()
+                .findFirst()
+                .orElse(null);
+        if (campaign == null) {
+            campaign = new FreeCampaignEntity();
+            campaign.setCampaignName("平台限时免费活动");
+            campaign.setStartTime(now);
+            campaign.setEndTime(now.plusDays(7));
+            campaign.setCampaignStatus("ACTIVE");
+            campaign.setCreatedAt(now);
+            freeCampaignMapper.insert(campaign);
+        }
+
+        CampaignTemplateEntity relation = campaignTemplateMapper.selectOne(new LambdaQueryWrapper<CampaignTemplateEntity>()
+                .eq(CampaignTemplateEntity::getCampaignId, campaign.getCampaignId())
+                .eq(CampaignTemplateEntity::getTemplateId, templateId)
+                .last("LIMIT 1"));
+        if (relation == null) {
+            relation = new CampaignTemplateEntity();
+            relation.setCampaignId(campaign.getCampaignId());
+            relation.setTemplateId(templateId);
+            relation.setTotalQuota(100);
+            relation.setRemainingQuota(100);
+            relation.setPerUserLimit(1);
+            relation.setCreatedAt(now);
+            campaignTemplateMapper.insert(relation);
+            return Map.of("success", true, "message", "已加入限时免费活动，库存 100 份");
+        }
+        relation.setTotalQuota(relation.getTotalQuota() + 100);
+        relation.setRemainingQuota(relation.getRemainingQuota() + 100);
+        campaignTemplateMapper.updateById(relation);
+        return Map.of("success", true, "message", "已补充限时免费活动库存 100 份");
     }
 }

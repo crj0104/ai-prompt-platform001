@@ -25,4 +25,6 @@ public interface TradeService {
     List<UsageLogView> listUsageLogs(Long userId);
 
     List<BalanceLogView> listBalanceLogs(Long userId);
+
+    Map<String, Object> setTemplateFree(Long templateId);
 }

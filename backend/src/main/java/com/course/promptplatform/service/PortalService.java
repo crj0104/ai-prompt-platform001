@@ -1,10 +1,12 @@
 package com.course.promptplatform.service;
 
 import com.course.promptplatform.model.ApiRequests.LoginRequest;
+import com.course.promptplatform.model.ApiRequests.PublishTemplateRequest;
 import com.course.promptplatform.model.ApiRequests.PurchaseRequest;
 import com.course.promptplatform.model.ApiRequests.RegisterRequest;
 import com.course.promptplatform.model.ApiRequests.ReviewRequest;
 import com.course.promptplatform.model.ApiRequests.SearchRequest;
+import com.course.promptplatform.model.ApiRequests.UpdateTemplateRequest;
 import com.course.promptplatform.model.PortalViewModels.DailyTrendView;
 import com.course.promptplatform.model.PortalViewModels.TemplateCardView;
 import com.course.promptplatform.model.PortalViewModels.TemplateDetailView;
@@ -24,25 +26,35 @@ public interface PortalService {
 
     TemplateDetailView getTemplateDetail(Long templateId);
 
-    UserProfileView getProfile();
+    UserProfileView getProfile(Long userId);
 
-    Map<String, Object> creatorDashboard();
+    Map<String, Object> upgradeToCreator(Long userId);
+
+    Map<String, Object> creatorDashboard(Long userId);
 
     Map<String, Object> adminDashboard();
+
+    Map<String, Object> setTemplateFree(Long templateId);
 
     Map<String, Object> register(RegisterRequest request);
 
     Map<String, Object> login(LoginRequest request);
 
-    Map<String, Object> toggleFavorite(Long templateId);
+    Map<String, Object> toggleFavorite(Long userId, Long templateId);
 
-    Map<String, Object> removeFavorite(Long templateId);
+    Map<String, Object> removeFavorite(Long userId, Long templateId);
 
-    Map<String, Object> purchaseTemplate(PurchaseRequest request);
+    Map<String, Object> purchaseTemplate(Long userId, PurchaseRequest request);
 
-    Map<String, Object> useTemplate(Long templateId, String inputSummary);
+    Map<String, Object> publishTemplate(Long userId, PublishTemplateRequest request);
 
-    Map<String, Object> submitReview(ReviewRequest request);
+    Map<String, Object> updateTemplate(Long userId, Long templateId, UpdateTemplateRequest request);
+
+    Map<String, Object> deleteTemplate(Long userId, Long templateId);
+
+    Map<String, Object> useTemplate(Long userId, Long templateId, String inputSummary);
+
+    Map<String, Object> submitReview(Long userId, ReviewRequest request);
 
     List<TemplateCardView> recommendTemplates();
 

@@ -74,20 +74,88 @@ pre {
   padding: 18px 20px;
 }
 
-.page-caption,
-.muted {
-  color: var(--muted);
+.session-panel {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 38px;
 }
 
-.page-caption {
-  margin-bottom: 6px;
-  font-size: 13px;
+.session-name {
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--muted);
 }
 
 #viewTitle {
   margin-bottom: 6px;
   font-size: 28px;
   font-weight: 600;
+}
+
+.auth-layout {
+  display: grid;
+  place-items: center;
+  min-height: 360px;
+}
+
+.view.auth-layout.active {
+  display: grid;
+}
+
+.auth-card {
+  width: min(420px, 100%);
+  padding: 24px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.auth-tab {
+  min-height: 38px;
+  border: none;
+  background: #fff;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.auth-tab.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.auth-tab:hover:not(.active) {
+  background: var(--soft);
+}
+
+.form-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.form-grid[hidden] {
+  display: none;
+}
+
+.form-grid input {
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--ink);
 }
 
 .nav-bar {
@@ -130,11 +198,20 @@ pre {
   border-color: var(--primary-hover);
 }
 
+.danger-btn {
+  border-color: #ef4444;
+  color: #b91c1c;
+}
+
+.danger-btn:hover {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
 .nav-refresh {
   margin-left: auto;
 }
 
-.login-form,
 .toolbar,
 .card-actions,
 .meta-line,
@@ -146,12 +223,12 @@ pre {
   align-items: center;
 }
 
-.login-form input,
 .toolbar input,
 .toolbar select,
 .modal-body textarea,
 .panel input,
-.panel textarea {
+.panel textarea,
+.panel select {
   min-height: 38px;
   padding: 8px 10px;
   border: 1px solid var(--line-strong);
@@ -167,6 +244,22 @@ pre {
 
 .toolbar input[name="keyword"] {
   flex: 1 1 280px;
+}
+
+.creator-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.creator-form textarea {
+  grid-column: 1 / -1;
+  min-height: 120px;
+  resize: vertical;
+}
+
+.creator-form button {
+  justify-self: start;
 }
 
 .message {
@@ -275,6 +368,21 @@ pre {
   justify-content: flex-end;
 }
 
+.use-row {
+  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 1.8fr) auto;
+}
+
+.use-input textarea {
+  width: 100%;
+  min-height: 82px;
+  resize: vertical;
+}
+
+.use-result {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+}
+
 .empty-state {
   padding: 40px 12px;
   text-align: center;
@@ -282,6 +390,47 @@ pre {
   border: 1px dashed var(--line-strong);
   border-radius: 6px;
   background: var(--soft);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.pagination button,
+.pagination select {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.pagination button:disabled {
+  color: var(--line-strong);
+  cursor: default;
+}
+
+.pagination button:hover:not(:disabled) {
+  border-color: var(--primary);
+}
+
+.pagination .page-current {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.pagination .page-info {
+  padding: 0 8px;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .dashboard-grid,
@@ -309,6 +458,47 @@ pre {
 .list-row strong {
   display: block;
   margin-bottom: 6px;
+}
+
+.chart-panel {
+  overflow: hidden;
+}
+
+.line-chart {
+  width: 100%;
+  min-height: 220px;
+  display: block;
+}
+
+.chart-axis {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+.chart-line {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart-dot {
+  fill: #fff;
+  stroke: var(--primary);
+  stroke-width: 2;
+}
+
+.chart-label {
+  fill: var(--muted);
+  font-size: 12px;
+}
+
+.income-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
 }
 
 .modal[hidden] {
@@ -392,8 +582,6 @@ pre {
     margin-left: 0;
   }
 
-  .login-form input,
-  .login-form button,
   .toolbar input,
   .toolbar select,
   .toolbar button {

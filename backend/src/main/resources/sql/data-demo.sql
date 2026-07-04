@@ -1,7 +1,10 @@
 INSERT INTO sys_user (user_id, username, password_hash, phone, email, creator_score, creator_level, balance, user_status)
 VALUES
     (1, 'demo_user', 'demo_hash', '13800138000', 'demo@example.com', 860, 'A级创作者', 299.00, 'ACTIVE'),
-    (2, 'creator_one', 'creator_hash', '13900139000', 'creator@example.com', 1280, 'S级创作者', 980.00, 'ACTIVE');
+    (2, 'creator_one', 'creator_hash', '13900139000', 'creator@example.com', 1280, 'A级创作者', 980.00, 'ACTIVE'),
+    (3, 'admin', 'admin123', NULL, NULL, 0, NULL, 0.00, 'ACTIVE'),
+    (4, '111', '111', NULL, NULL, 0, NULL, 500.00, 'ACTIVE'),
+    (5, '222', '222', NULL, NULL, 0, NULL, 500.00, 'ACTIVE');
 
 INSERT INTO prompt_template (template_id, creator_user_id, title, scene_desc, price_type, price, shelf_status, use_count, favorite_count, avg_score, review_count)
 VALUES

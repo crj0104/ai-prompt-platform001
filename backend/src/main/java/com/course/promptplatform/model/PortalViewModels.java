@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 页面渲染与接口输出共用的轻量数据模型，便于课程设计版本快速演示业务闭环。
+ * 页面渲染与接口输出共用的轻量数据模型。
  */
 public final class PortalViewModels {
 
@@ -108,6 +108,7 @@ public final class PortalViewModels {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class OrderView {
+        private Long templateId;
         private String orderNo;
         private String templateTitle;
         private BigDecimal payAmount;
@@ -159,6 +160,17 @@ public final class PortalViewModels {
     public static class MonthlyIncomeView {
         private String month;
         private BigDecimal income;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class TemplateIncomeView {
+        private Long templateId;
+        private String title;
+        private BigDecimal income;
+        private Integer orderCount;
     }
 
     @Data

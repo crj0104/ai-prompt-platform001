@@ -1,10 +1,12 @@
 package com.course.promptplatform.service;
 
 import com.course.promptplatform.model.ApiRequests.LoginRequest;
+import com.course.promptplatform.model.ApiRequests.PublishTemplateRequest;
 import com.course.promptplatform.model.ApiRequests.PurchaseRequest;
 import com.course.promptplatform.model.ApiRequests.RegisterRequest;
 import com.course.promptplatform.model.ApiRequests.ReviewRequest;
 import com.course.promptplatform.model.ApiRequests.SearchRequest;
+import com.course.promptplatform.model.ApiRequests.UpdateTemplateRequest;
 import com.course.promptplatform.model.PortalViewModels.DailyTrendView;
 import com.course.promptplatform.model.PortalViewModels.TemplateCardView;
 import com.course.promptplatform.model.PortalViewModels.TemplateDetailView;
@@ -18,8 +20,6 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class PortalApplicationService implements PortalService {
-
-    private static final Long DEFAULT_USER_ID = 1L;
 
     private final TemplateDomainService templateDomainService;
     private final TemplateAnalyticsService templateAnalyticsService;
@@ -43,18 +43,28 @@ public class PortalApplicationService implements PortalService {
     }
 
     @Override
-    public UserProfileView getProfile() {
-        return userCenterService.getProfile(DEFAULT_USER_ID);
+    public UserProfileView getProfile(Long userId) {
+        return userCenterService.getProfile(userId);
     }
 
     @Override
-    public Map<String, Object> creatorDashboard() {
-        return dashboardService.creatorDashboard(DEFAULT_USER_ID);
+    public Map<String, Object> upgradeToCreator(Long userId) {
+        return userCenterService.upgradeToCreator(userId);
+    }
+
+    @Override
+    public Map<String, Object> creatorDashboard(Long userId) {
+        return dashboardService.creatorDashboard(userId);
     }
 
     @Override
     public Map<String, Object> adminDashboard() {
         return dashboardService.adminDashboard();
+    }
+
+    @Override
+    public Map<String, Object> setTemplateFree(Long templateId) {
+        return tradeService.setTemplateFree(templateId);
     }
 
     @Override
@@ -68,28 +78,43 @@ public class PortalApplicationService implements PortalService {
     }
 
     @Override
-    public Map<String, Object> toggleFavorite(Long templateId) {
-        return tradeService.toggleFavorite(DEFAULT_USER_ID, templateId);
+    public Map<String, Object> toggleFavorite(Long userId, Long templateId) {
+        return tradeService.toggleFavorite(userId, templateId);
     }
 
     @Override
-    public Map<String, Object> removeFavorite(Long templateId) {
-        return tradeService.removeFavorite(DEFAULT_USER_ID, templateId);
+    public Map<String, Object> removeFavorite(Long userId, Long templateId) {
+        return tradeService.removeFavorite(userId, templateId);
     }
 
     @Override
-    public Map<String, Object> purchaseTemplate(PurchaseRequest request) {
-        return tradeService.purchaseTemplate(DEFAULT_USER_ID, request);
+    public Map<String, Object> purchaseTemplate(Long userId, PurchaseRequest request) {
+        return tradeService.purchaseTemplate(userId, request);
     }
 
     @Override
-    public Map<String, Object> useTemplate(Long templateId, String inputSummary) {
-        return tradeService.useTemplate(DEFAULT_USER_ID, templateId, inputSummary);
+    public Map<String, Object> publishTemplate(Long userId, PublishTemplateRequest request) {
+        return templateDomainService.publishTemplate(userId, request);
     }
 
     @Override
-    public Map<String, Object> submitReview(ReviewRequest request) {
-        return tradeService.submitReview(DEFAULT_USER_ID, request);
+    public Map<String, Object> updateTemplate(Long userId, Long templateId, UpdateTemplateRequest request) {
+        return templateDomainService.updateTemplate(userId, templateId, request);
+    }
+
+    @Override
+    public Map<String, Object> deleteTemplate(Long userId, Long templateId) {
+        return templateDomainService.deleteTemplate(userId, templateId);
+    }
+
+    @Override
+    public Map<String, Object> useTemplate(Long userId, Long templateId, String inputSummary) {
+        return tradeService.useTemplate(userId, templateId, inputSummary);
+    }
+
+    @Override
+    public Map<String, Object> submitReview(Long userId, ReviewRequest request) {
+        return tradeService.submitReview(userId, request);
     }
 
     @Override

@@ -76,4 +76,38 @@ public final class ApiRequests {
         @NotNull(message = "模板 ID 不能为空")
         private Long templateId;
     }
+
+    @Data
+    public static class PublishTemplateRequest {
+        @NotBlank(message = "标题不能为空")
+        private String title;
+
+        private String sceneDesc;
+
+        @NotBlank(message = "提示词内容不能为空")
+        private String promptContent;
+
+        private java.util.List<String> tags;
+
+        private BigDecimal price;
+
+        private String priceType;
+    }
+
+    @Data
+    public static class UpdateTemplateRequest {
+        @NotBlank(message = "标题不能为空")
+        private String title;
+
+        private String sceneDesc;
+
+        @NotBlank(message = "提示词内容不能为空")
+        private String promptContent;
+
+        private java.util.List<String> tags;
+
+        private BigDecimal price;
+
+        private String priceType;
+    }
 }

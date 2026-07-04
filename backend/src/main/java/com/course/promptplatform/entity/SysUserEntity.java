@@ -1,5 +1,6 @@
 package com.course.promptplatform.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -27,7 +28,7 @@ public class SysUserEntity {
     @TableField("creator_score")
     private Integer creatorScore;
 
-    @TableField("creator_level")
+    @TableField(value = "creator_level", insertStrategy = FieldStrategy.NEVER)
     private String creatorLevel;
 
     private BigDecimal balance;
